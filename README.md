@@ -17,8 +17,10 @@ pip install -e ".[dev]"
 ## Executando
 
 ```powershell
-uvicorn app.main:app --reload
+.venv\Scripts\python -m uvicorn app.main:app --reload
 ```
+
+Com a venv ativada, `uvicorn app.main:app --reload` também funciona. Se o PowerShell bloquear o `Activate.ps1`, rode `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 
 Documentação interativa em http://127.0.0.1:8000/docs.
 
