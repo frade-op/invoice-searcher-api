@@ -52,6 +52,19 @@ app/
 tests/        # pytest (fixtures em tests/fixtures)
 ```
 
+## Deploy no Heroku
+
+Arquivos usados: `Procfile`, `.python-version` e `requirements.txt` (mantenha-o em sincronia com as dependências do `pyproject.toml`).
+
+```powershell
+heroku login
+heroku git:remote -a <nome-do-app>
+git push heroku main
+heroku open /health
+```
+
+Também é possível conectar o repositório do GitHub na aba **Deploy** do app e ativar o deploy automático.
+
 ## Testes e lint
 
 ```powershell
