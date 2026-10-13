@@ -1,0 +1,10 @@
+{
+  "name": "invoice-searcher-api",
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "pip install pytest pytest-asyncio && pytest"
+      }
+    }
+  }
+}
