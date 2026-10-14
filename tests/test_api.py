@@ -57,3 +57,18 @@ async def test_endpoint_ok(client):
 async def test_endpoint_rejects_bad_urls(client, url):
     r = await client.post("/invoices/parse", json={"url": url})
     assert r.status_code == 422
+
+
+async def test_cors_preflight_allowed_origin():
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://t") as c:
+        r = await c.options(
+            "/invoices/parse",
+            headers={
+                "Origin": "http://127.0.0.1:5500",
+                "Access-Control-Request-Method": "POST",
+                "Access-Control-Request-Headers": "content-type",
+            },
+        )
+    assert r.status_code == 200
+    assert r.headers["access-control-allow-origin"] == "http://127.0.0.1:5500"
+
