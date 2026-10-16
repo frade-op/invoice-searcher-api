@@ -1,6 +1,6 @@
 # Invoice Searcher API
 
-API que extrai produtos e dados de NFC-e a partir da URL do QR Code (portal SVRS).
+API que extrai produtos e dados de NFC-e a partir da URL do QR Code.
 
 ## Requisitos
 
@@ -40,6 +40,18 @@ curl -X POST http://127.0.0.1:8000/invoices/parse `
 ```
 
 Erros: `422` para URL inválida ou HTML não reconhecido; `502` para falha no portal de origem.
+
+## Cobertura de estados
+
+Atualmente, a extração está implementada e testada para o layout de consulta do portal
+SVRS usado no Rio Grande do Sul. O fato de a validação aceitar uma URL HTTPS em domínio
+`.gov.br` não significa que o layout de outros estados seja suportado: cada portal pode
+retornar HTML diferente, e a API rejeita páginas que não correspondem ao parser atual.
+
+São Paulo (SP), Rio de Janeiro (RJ) e Rondônia (RO) ainda não têm suporte confirmado.
+Para incluí-los, é necessário implementar e testar o parser com exemplos reais de cada
+portal. A API aceita somente HTTPS; URLs de QR Code servidas apenas por HTTP não são
+permitidas.
 
 ## Estrutura
 
