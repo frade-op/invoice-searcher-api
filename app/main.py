@@ -24,7 +24,10 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 app = FastAPI(title="Invoice Searcher API", version="0.1.0", lifespan=lifespan)
 
-_default_origins = "http://127.0.0.1:5500,http://localhost:5500"
+_default_origins = (
+    "http://127.0.0.1:5500,http://localhost:5500,"
+    "https://frade-op-demos.com.br,https://www.frade-op-demos.com.br"
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
